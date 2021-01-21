@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ETHO Dream Pool</title>
+    <meta name="description" content="ETHO Dream Pool"/>
+    <meta name="keywords" content="ether-1, ethereum, pool, mining, cryptocurrency"/>
+    <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=Intl.~locale.en"></script>
+    {{content-for "head"}}
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/ethash-galaxypool.css">
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/ethash-galaxypool.js"></script>
+
+    {{content-for "body-footer"}}
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">ETHO Dream Pool |
+          <strong>Donate ETH/ETHO:</strong>
+          <a href="https://etherscan.io/address/0x5AF998F979342d506886e87b9787a80fBBF88706" rel="nofollow" target="_blank">
+          0x5AF998F979342d506886e87b9787a80fBBF88706
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

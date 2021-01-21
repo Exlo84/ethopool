@@ -1,0 +1,93 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <img src="/newlogo.png" height="80px" border="0"><br/>
+        <strong>Min. payout threshold: {{config.PayoutThreshold}}</strong>.<br/>
+        <span class="label label-success">Payment</span> Payouts are made automatically every 3 hours.<br/>
+      </div>
+      <div class="col-md-3 stats">
+        <div><i class="fa fa-users"></i> Miners Online: <span id="poolHashrate">{{format-number stats.model.minersTotal}}</span></div>
+        <div><i class="fa fa-tachometer"></i> Pool Hash Rate: <span id="poolHashrate">{{format-hashrate stats.model.hashrate}}</span></div>
+        <div><i class="fa fa-money"></i> Pool Fee: <span id="poolFee" class="label label-success">{{config.PoolFee}}</span></div>
+        {{#if stats.model.stats.lastBlockFound}}
+        <div><i class="fa fa-clock-o"></i> Last Block Found: <span>{{format-relative (seconds-to-ms stats.model.stats.lastBlockFound)}}</span></div>
+        {{/if}}
+      </div>
+      <div class="col-md-4 stats">
+        <div><i class="fa fa-unlock-alt"></i> Network Difficulty: <span>{{with-metric-prefix stats.difficulty}}</span></div>
+        <div><i class="fa fa-tachometer"></i> Network Hash Rate: <span>{{format-hashrate stats.hashrate}}</span></div>
+        <div><i class="fa fa-bars"></i> Blockchain Height: <span>{{format-number stats.height}}</span></div>
+        <div><i class="fa fa-clock-o"></i> Current Round Variance: <span>{{format-number stats.roundVariance style='percent'}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#if config.highcharts.main.enabled}}
+  <div class="container">
+    {{high-charts mode=chartMode chartOptions=chartOptions content=chartData}}
+  </div>
+{{/if}}
+
+<div class="container">
+
+  <div class="stats">
+    <h4>Your Stats &amp; Payment History</h4>
+    <div class="input-group">
+      {{input value=cachedLogin class="form-control" placeholder="Enter Your Ether-1 Address"}}
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" {{action 'lookup' cachedLogin}}>
+          <span style="display: inline;"><i class="fa fa-search"></i> Lookup</span>
+        </button>
+      </span>
+    </div>
+  </div>
+  <div>
+    <hr/>
+
+    <table width="100%" border="0">
+		<tr>
+		<td>
+    			<h6 class="note note-info text-center">
+			<span class="label label-success">1G</span> <b>RIG / PROXY HASHRATE &lt; 50 MH/s</b>
+			<br>
+			(difficulty 1G)
+			<br><br>
+			<b>Stratum Mining:</b>
+			<p style="font-size:18px;color:white;"
+>stratum+tcp://{{config.StratumHost}}:8001</p><br>
+    			<hr>
+    			</h6>
+		</td>
+		<td>
+    			<h6 class="note note-info text-center">
+			<span class="label label-success">2G</span> <b>RIG / PROXY HASHRATE &lt; 100 MH/s</b>
+			<br>
+			(difficulty 2G)
+			<br><br>
+			<b>Stratum Mining:</b>
+			<p style="font-size:18px;color:white;"
+>stratum+tcp://{{config.StratumHost}}:8002</p><br>
+    			<hr>
+    			</h6>
+		</td>
+   		<td>
+    			<h6 class="note note-info text-center">
+			<span class="label label-success">4G</span> <b>RIG / PROXY HASHRATE 100+ MH/s </b>
+			<br>
+			(difficulty 4G)
+			<br><br>
+			<b>Stratum Mining:</b>
+			<p style="font-size:18px;color:white;"
+>stratum+tcp://{{config.StratumHost}}:8004</p><br>
+    			<hr>
+    			</h6>
+		</td>
+		</tr>
+		<br>
+	</table>
+	
+<coingecko-coin-ticker-widget  coin-id="ether-1" currency="btc" locale="en" position="left" background-color="#12060e" width="550"></coingecko-coin-ticker-widget><br>
+   </div>
+</div>
