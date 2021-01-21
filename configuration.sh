@@ -2,7 +2,6 @@
 
 echo -e "\033[32mMake can time as it will download the packages\n"
 sudo chmod -R 777 .
-cd ethopool 
 export GOROOT=/usr/local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 make
