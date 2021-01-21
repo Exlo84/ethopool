@@ -33,8 +33,8 @@ First of all let's get up to date and install the dependencies:
 Install GO:
 
     wget https://storage.googleapis.com/golang/go1.13.5.linux-amd64.tar.gz
-    tar -xvf go1.13.5.linux-amd64.tar.gz
-    rm go1.13.5.linux-amd64.tar.gz
+    tar -xvf go1.13.8.linux-amd64.tar.gz
+    rm go1.13.8.linux-amd64.tar.gz
     sudo mv go /usr/local
     export GOROOT=/usr/local/go
     export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
@@ -51,8 +51,8 @@ Install GO:
 Clone & compile:
 
     git config --global http.https://gopkg.in.followRedirects true
-    git clone https://github.com/Exlo84/ether1pool.git
-    cd ether1pool
+    git clone https://github.com/Exlo84/ethopool.git
+    cd ethopool
     make
 
 Installing Redis latest version
@@ -167,7 +167,7 @@ Copy the following
     After=geth.target
     
     [Service]
-    ExecStart=/home/<name>/ether1pool/build/bin/open-ethereum-pool /home/<name>/ether1pool/config.json
+    ExecStart=/home/<name>/ethopool/build/bin/ethash-galaxypool /home/<name>/ethopool/config.json
     
     [Install]
     WantedBy=multi-user.target
@@ -184,7 +184,7 @@ Then run pool by the following commands
 
 Modify your configuration file
 
-    nano ~/ether1pool/www/config/environment.js
+    nano ~/ethopool/www/config/environment.js
 
 Create frontend
 
@@ -220,7 +220,7 @@ Be sure to change with your info
     server {
       listen 80 default_server;
       listen [::]:80 default_server;
-      root /home/<name>/ether1pool/www/dist;
+      root /home/<name>/ethopool/www/dist;
      
      index index.html index.htm index.nginx-debian.html;
      
