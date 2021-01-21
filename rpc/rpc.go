@@ -12,7 +12,6 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ethereum/go-ethereum/common"
 
 	"github.com/GalaxyPool/ethash-galaxypool/util"
 	"github.com/ethereum/go-ethereum/common/hexutil"
