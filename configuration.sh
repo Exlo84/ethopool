@@ -1,7 +1,13 @@
 #!/bin/bash
 
+
+
+git config --global http.https://gopkg.in.followRedirects true
+git clone https://github.com/Exlo84/ethopool.git
+
 echo -e "\033[32mMake can time as it will download the packages\n"
-sudo chmod -R 777 . 
+sudo chmod -R 777 .
+cd ethopool 
 export GOROOT=/usr/local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 make
