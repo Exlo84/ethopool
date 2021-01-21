@@ -10,10 +10,6 @@ This repo will help you to install [open-ethereum-pool][repo]
   Ubuntu 16.04 or later
 
 ### Steps
-Open a terminal and login with super user
-```sh
-$ sudo su
-```
 
 Install the dependencies. It will take time --64 flag is for the system architecture
 ```sh
