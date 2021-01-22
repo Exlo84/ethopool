@@ -188,7 +188,7 @@ Modify your configuration file
 
 Create frontend
 
-    cd ~/ether1pool/www/
+    cd ~/ethopool/www/
     
     sudo npm install -g ember-cli@^2.18.2
     sudo npm install -g bower
