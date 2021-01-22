@@ -182,18 +182,23 @@ fi
 
 echo -e '\033[1;92mMaking a geth service'
 
-echo "[Unit]
+echo
+cat > /tmp/geth.service << EOL
+[Unit]
 Description=Etho Pool
+
 [Service]
 ExecStart=/usr/local/bin/geth --rpc --allow-insecure-unlock --rpcaddr 127.0.0.1 --rpcport 8545 --syncmode "fast" --etherbase <your-address> --mine --extradata "<your-pool>"
 RestartSec=30
 Type=simple
-User=root
-Group=root
+User=ether1
+Group=ether1
+
 [Install]
-WantedBy=multi-user.target" > /lib/systemd/system/geth.service
+WantedBy=multi-user.target
+EOL
 
-
+sudo \mv /tmp/geth.service /etc/systemd/system
 systemctl daemon-reload
 systemctl enable geth.service
 
