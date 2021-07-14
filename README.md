@@ -114,9 +114,9 @@ Add
 ### Install Geth
 
     cd ~
-    wget -N https://github.com/Ether1Project/Ether1/releases/download/1.4.2/ether-1-linux-1.4.2.tar.gz
-    tar xfvz ether-1-linux-1.4.2.tar.gz
-    rm ether-1-linux-1.4.2.tar.gz
+    wget -N https://github.com/Ether1Project/Ether1/releases/download/V1.4.5/ether-1-linux-1.4.5.tar.gz
+    tar xfvz ether-1-linux-1.4.5.tar.gz
+    rm ether-1-linux-1.4.5.tar.gz
     sudo mv geth /usr/local/bin/geth 
 
 Make geth system service
