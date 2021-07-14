@@ -4,7 +4,7 @@
 #                           GOLANG                         #
 # **********************************************************
 
-VERSION="1.13.8"
+VERSION="1.16.2"
 
 print_help() {
     echo "Usage: bash goinstall.sh OPTIONS"
@@ -55,33 +55,34 @@ fi
 
 if [ -d "$HOME/.go" ] || [ -d "$HOME/go" ]; then
     echo "The 'go' or '.go' directories already exist. Exiting."
-else
-    echo "Downloading $DFILE ..."
-    wget https://storage.googleapis.com/golang/$DFILE -O /tmp/go.tar.gz
-    
-    if [ $? -ne 0 ]; then
-        echo "Download failed! Exiting."
-        exit 1
-    fi
-    
-    echo "Extracting File..."
-    tar -C "$HOME" -xzf /tmp/go.tar.gz
-    mv "$HOME/go" "$HOME/.go"
-    touch "$HOME/.${shell_profile}"
-    {
-        echo '# GoLang'
-        echo 'export GOROOT=$HOME/.go'
-        echo 'export PATH=$PATH:$GOROOT/bin'
-        echo 'export GOPATH=$HOME/go'
-        echo 'export PATH=$PATH:$GOPATH/bin'
-    } >> "$HOME/.${shell_profile}"
-    
-    mkdir -p $HOME/go/{src,pkg,bin}
-    echo -e "\nGo $VERSION was installed.\nMake sure to relogin into your shell or run:"
-    echo -e "\n\tsource $HOME/.${shell_profile}\n\nto update your environment variables."
-    echo "Tip: Opening a new terminal window usually just works. :)"
-    rm -f /tmp/go.tar.gz
+    exit 1
 fi
+
+echo "Downloading $DFILE ..."
+wget https://storage.googleapis.com/golang/$DFILE -O /tmp/go.tar.gz
+
+if [ $? -ne 0 ]; then
+    echo "Download failed! Exiting."
+    exit 1
+fi
+    
+echo "Extracting File..."
+tar -C "$HOME" -xzf /tmp/go.tar.gz
+mv "$HOME/go" "$HOME/.go"
+touch "$HOME/.${shell_profile}"
+{
+    echo '# GoLang'
+    echo 'export GOROOT=$HOME/.go'
+    echo 'export PATH=$PATH:$GOROOT/bin'
+    echo 'export GOPATH=$HOME/go'
+    echo 'export PATH=$PATH:$GOPATH/bin'
+} >> "$HOME/.${shell_profile}"
+
+mkdir -p $HOME/go/{src,pkg,bin}
+echo -e "\nGo $VERSION was installed.\nMake sure to relogin into your shell or run:"
+echo -e "\n\tsource $HOME/.${shell_profile}\n\nto update your environment variables."
+echo "Tip: Opening a new terminal window usually just works. :)"
+rm -f /tmp/go.tar.g
 
 
 # **********************************************************
@@ -119,8 +120,13 @@ fi
 #                           NGINX                          #
 # **********************************************************
 
+get_update()
+{
+    apt-get update
+}
+
+get_update
 echo -e "\033[32mInstalling nginx"
-# get_update
 apt-get install nginx
 echo y | command
 
@@ -152,13 +158,24 @@ systemctl enable redis-server.service
 
 
 # **********************************************************
-#                           Wacthman                       #
+#                       Watchman                           #
 # **********************************************************
 
-apt-get install -y autoconf automake build-essential python-dev libtool m4 watchman
+apt-get install libtool
+apt-get install m4
+apt-get install automake
+
+git clone https://github.com/facebook/watchman.git
+cd watchman
+git checkout v4.9.0  # the latest stable release
+./autogen.sh
+./configure
+make
+sudo make install
 
 # Increasing limit for watchman
 echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_instances && watchman shutdown-server && sudo sysctl -p
+
 
 
 # **********************************************************
@@ -171,9 +188,9 @@ apt-get install software-properties-common
 
 get_update
 
-wget -N https://github.com/Ether1Project/Ether1/releases/download/1.4.2/ether-1-linux-1.4.2.tar.gz
-tar xfvz ether-1-linux-1.4.2.tar.gz
-rm ether-1-linux-1.4.2.tar.gz
+wget -N https://github.com/Ether1Project/Ether1/releases/download/V1.4.5/ether-1-linux-1.4.5.tar.gz
+tar xfvz ether-1-linux-1.4.5.tar.gz
+rm ether-1-linux-1.4.5.tar.gz
 sudo mv geth /usr/local/bin/geth
 
 if [ "$1" == "--create" ]; then
@@ -202,9 +219,5 @@ sudo \mv /tmp/geth.service /etc/systemd/system
 systemctl daemon-reload
 systemctl enable geth.service
 
-
 echo -e '\033[1;92mStarting geth'
 screen geth --rpc --fast #syncing
-
-
-
