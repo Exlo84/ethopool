@@ -63,7 +63,11 @@ echo -e "{
 		\"hashrateLargeWindow\": \"3h\",
 		\"luckWindow\": [64, 128, 256],
 		\"payments\": 30,
-		\"blocks\": 50
+		\"blocks\": 50,
+		\"poolCharts\":\"*/20 * * * *\",
+		\"poolChartsNum\": 216,
+		\"minerCharts\":\"*/20 * * * *\",
+		\"minerChartsNum\": 144
 	},
 
 	\"upstreamCheckInterval\": \"5s\",
