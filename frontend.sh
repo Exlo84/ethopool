@@ -5,7 +5,6 @@
 #                     Modules and Running                  #
 # **********************************************************
 
-cd ethopool
 cd www
 sudo chmod -R 777 . #Permission issues
 sudo npm install -g ember-cli@2.18.2
