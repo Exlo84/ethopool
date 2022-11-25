@@ -32,9 +32,9 @@ First of all let's get up to date and install the dependencies:
 
 Install GO:
 
-    wget https://storage.googleapis.com/golang/go1.13.8.linux-amd64.tar.gz
-    tar -xvf go1.13.8.linux-amd64.tar.gz
-    rm go1.13.8.linux-amd64.tar.gz
+    wget https://storage.googleapis.com/golang/go1.16.15.linux-amd64.tar.gz
+    tar -xvf go1.16.15.linux-amd64.tar.gz
+    rm go1.16.15.linux-amd64.tar.gz
     sudo mv go /usr/local
     export GOROOT=/usr/local/go
     export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
@@ -114,9 +114,7 @@ Add
 ### Install Geth
 
     cd ~
-    wget -N https://github.com/Ether1Project/Ether1/releases/download/V1.4.5/ether-1-linux-1.4.5.tar.gz
-    tar xfvz ether-1-linux-1.4.5.tar.gz
-    rm ether-1-linux-1.4.5.tar.gz
+    wget https://github.com/Ether1Project/Ether1/releases/download/V2.1.0/geth
     sudo mv geth /usr/local/bin/geth 
 
 Make geth system service
